@@ -27,6 +27,20 @@ import java.io.IOException;
  * Hello
  * $ curl http://127.0.0.1:2379/v2/keys/message
  * {"action":"get","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+ *
+ * We can get the value that we just set in /message by issuing a GET request:
+ *
+ * curl http://127.0.0.1:2379/v2/keys/message
+ *
+ * {
+ *     "action": "get",
+ *     "node": {
+ *         "createdIndex": 2,
+ *         "key": "/message",
+ *         "modifiedIndex": 2,
+ *         "value": "Hello world"
+ *     }
+ * }
  */
 public class EtcdGetKey {
 
