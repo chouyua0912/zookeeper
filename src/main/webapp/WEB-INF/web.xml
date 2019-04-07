@@ -1,0 +1,26 @@
+<web-app>
+
+    <!--容器的初始化是由Listener开始的，Servlet的初始化在Listener之后-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-service.xml</param-value>
+    </context-param>
+
+    <!--不配置ContextLoaderListener时候，DispatcherServlet持有的 XmlWebApplicationContext 没有parent Context-->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-core.xml</param-value>        <!-- 默认是dispatcher-servlet.xml -->
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
